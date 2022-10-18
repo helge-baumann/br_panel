@@ -6,4 +6,10 @@
 # Präambel 
 if(!"pacman" %in% installed.packages()[,1]) install.packages("pacman")
 library(pacman)
-p_load(haven, dplyr, tidyr)
+p_load(haven, dplyr, tidyr, stringr, purrr)
+
+# Ordner erzeugen
+map(c("steps", "data", "metadata", "info", "output"), dir.create, showWarnings=F)
+
+# Durchlaufen
+map(dir("steps", full.names=T), source, encoding="UTF-8")
